@@ -8,6 +8,7 @@ export default function TimelinePostForm({
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(body);
+        console.log(body);
       }}
     >
       <textarea

@@ -3,23 +3,25 @@ import { client, checkError } from './client.js';
 export async function getShoppingListItems() {
   const response = await client
     .from('anon-shopping-list-items')
-    .select(`
+    .select(
+      `
       *
-`)
-    .order('created_at', { ascending: false })
-  ;
+`
+    )
+    .order('created_at', { ascending: false });
   return checkError(response);
 }
 
 export async function getShoppingListItem(shoppingListItemId) {
   const response = await client
     .from('anon-shopping-list-items')
-    .select(`
+    .select(
+      `
       *
-`)
+`
+    )
     .match({ id: shoppingListItemId })
-    .single()
-  ;
+    .single();
   return checkError(response);
 }
 
@@ -28,8 +30,7 @@ export async function createShoppingListItem(fields) {
     .from('anon-shopping-list-items')
     .insert({
       ...fields,
-    })
-  ;
+    });
   return checkError(response);
 }
 
@@ -39,8 +40,7 @@ export async function updateShoppingItem(shoppingItemId, fields) {
     .update({
       ...fields,
     })
-    .eq('id', shoppingItemId)
-  ;
+    .eq('id', shoppingItemId);
   return checkError(response);
 }
 
@@ -48,7 +48,6 @@ export async function deleteShoppingItem(shoppingItemId) {
   const response = await client
     .from('anon-shopping-list-items')
     .delete()
-    .eq('id', shoppingItemId)
-  ;
+    .eq('id', shoppingItemId);
   return checkError(response);
 }
