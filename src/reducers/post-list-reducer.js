@@ -33,5 +33,10 @@ export const reducer = (state, action) => {
         postList,
       };
     }
+    case 'post-delete-success':
+      return {
+        ...state,
+        postFormValue: action.postId,
+      };
   }
 };

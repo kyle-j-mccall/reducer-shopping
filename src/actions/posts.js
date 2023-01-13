@@ -19,3 +19,9 @@ export const postSeenChanged = (postId, seen) => {
     seen,
   };
 };
+export const postDeleteSuccess = (postId) => {
+  return {
+    type: 'post-delete-success',
+    postId,
+  };
+};

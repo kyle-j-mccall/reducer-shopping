@@ -1,4 +1,8 @@
-export default function TimelinePost({ post, handleSeen }) {
+export default function TimelinePost({
+  post,
+  handleSeen,
+  handleDelete,
+}) {
   return (
     <div>
       <input
@@ -8,6 +12,12 @@ export default function TimelinePost({ post, handleSeen }) {
       />
       {post.id}
       {post.item}
+      <button
+        className="delete-btn"
+        onClick={() => handleDelete(post.id)}
+      >
+        delete
+      </button>
     </div>
   );
 }

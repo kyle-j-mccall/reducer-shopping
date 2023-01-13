@@ -4,11 +4,13 @@ import TimelinePostForm from '../Timeline/TimelinePostForm.jsx';
 import TimelinePostList from '../Timeline/TimelinePostList.jsx';
 import {
   createShoppingListItem,
+  deleteShoppingItem,
   getShoppingListItems,
   updateShoppingItem,
 } from '../../services/shopping-list-items.js';
 import {
   createPost,
+  postDeleteSuccess,
   postLoadSuccessAction,
   postSeenChanged,
 } from '../../actions/posts.js';
@@ -26,12 +28,26 @@ export default function ShoppingListPage() {
     fetchItems();
   }, []);
 
+  // const seenEffect = () => {
+  //   useEffect(() => {
+  //     const data = async () => {
+  //       const updateitem = await updateShoppingItem()
+  //     }
+  //   })
+  // }
+
   const onBodyChanged = (body) => {
     dispatch(createPost(body));
   };
 
   const handleSeen = (postId, seen) => {
     dispatch(postSeenChanged(postId, seen));
+  };
+
+  const handleDelete = async (postId) => {
+    deleteShoppingItem(postId);
+
+    dispatch(postDeleteSuccess(postId));
   };
 
   return (
@@ -42,21 +58,16 @@ export default function ShoppingListPage() {
         body={state.postFormValue}
         onSubmit={async (body) => {
           await createShoppingListItem({ item: body });
+          dispatch(createPost(''));
           getPostEffect(dispatch);
         }}
       />
       <TimelinePostList
         postList={state.postList}
+        handleDelete={handleDelete}
         handleSeen={(postId, seen) => {
           handleSeen(postId, seen);
-          state.postList.map((post) => {
-            if (postId === post.id) {
-              updateShoppingItem(post.id, {
-                ...post,
-                seen: !post.seen,
-              });
-            }
-          });
+
           getPostEffect(dispatch);
         }}
       />

@@ -1,5 +1,3 @@
 describe('shopping-list-item-reducer', () => {
-  it('passes', () => {
-
-  });
+  it('passes', () => {});
 });
