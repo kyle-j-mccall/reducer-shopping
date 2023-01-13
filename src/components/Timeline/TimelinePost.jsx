@@ -1,7 +1,11 @@
-export default function TimelinePost({ post }) {
+export default function TimelinePost({ post, handleSeen }) {
   return (
     <div>
-      <input type="checkbox" value={post.complete} />
+      <input
+        type="checkbox"
+        checked={post.seen}
+        onChange={() => handleSeen(!post.seen)}
+      />
       {post.id}
       {post.item}
     </div>

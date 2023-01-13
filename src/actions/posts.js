@@ -11,3 +11,11 @@ export const createPost = (newPost) => {
     newPost,
   };
 };
+
+export const postSeenChanged = (postId, seen) => {
+  return {
+    type: 'post-seen-changed',
+    postId,
+    seen,
+  };
+};
