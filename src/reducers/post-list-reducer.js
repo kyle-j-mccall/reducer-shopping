@@ -19,5 +19,20 @@ export const reducer = (state, action) => {
         ...state,
         postFormValue: action.newPost,
       };
+
+    case 'post-seen-changed': {
+      const postList = [...state.postList];
+      const index = postList.find(
+        (post) => post.id === action.postId
+      );
+      postList[index] = {
+        ...postList[index],
+        seen: action.seen,
+      };
+      return {
+        ...state,
+        postList,
+      };
+    }
   }
 };
