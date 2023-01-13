@@ -13,9 +13,8 @@ export default function TimelinePostList({
           <li key={post.id}>
             <TimelinePost
               handleDelete={handleDelete}
-              checked={post.seen}
               handleSeen={(seen) => {
-                handleSeen(post.id, seen);
+                handleSeen(post, seen);
               }}
               post={post}
             />

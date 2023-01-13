@@ -28,20 +28,17 @@ export default function ShoppingListPage() {
     fetchItems();
   }, []);
 
-  // const seenEffect = () => {
-  //   useEffect(() => {
-  //     const data = async () => {
-  //       const updateitem = await updateShoppingItem()
-  //     }
-  //   })
-  // }
-
   const onBodyChanged = (body) => {
     dispatch(createPost(body));
   };
 
-  const handleSeen = (postId, seen) => {
-    dispatch(postSeenChanged(postId, seen));
+  const handleSeen = async (post, seen) => {
+    dispatch(postSeenChanged(post.id, seen));
+
+    await updateShoppingItem(post.id, {
+      ...post,
+      seen: !post.seen,
+    });
   };
 
   const handleDelete = async (postId) => {
@@ -65,10 +62,8 @@ export default function ShoppingListPage() {
       <TimelinePostList
         postList={state.postList}
         handleDelete={handleDelete}
-        handleSeen={(postId, seen) => {
-          handleSeen(postId, seen);
-
-          getPostEffect(dispatch);
+        handleSeen={(post, seen) => {
+          handleSeen(post, seen);
         }}
       />
     </section>

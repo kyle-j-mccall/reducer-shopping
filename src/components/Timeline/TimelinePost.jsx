@@ -8,7 +8,7 @@ export default function TimelinePost({
       <input
         type="checkbox"
         checked={post.seen}
-        onChange={() => handleSeen(!post.seen)}
+        onChange={handleSeen}
       />
       {post.id}
       {post.item}

@@ -21,7 +21,7 @@ export const reducer = (state, action) => {
       };
     case 'post-seen-changed': {
       const postList = [...state.postList];
-      const index = postList.find(
+      const index = postList.findIndex(
         (post) => post.id === action.postId
       );
       postList[index] = {
