@@ -10,7 +10,6 @@ export default function TimelinePost({
         checked={post.seen}
         onChange={handleSeen}
       />
-      {post.id}
       {post.item}
       <button
         className="delete-btn"
