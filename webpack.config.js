@@ -12,7 +12,7 @@ module.exports = {
   output: {
     clean: true,
     filename: 'bundle.[contenthash].js',
-    path: __dirname + '/build',
+    path: path.resolve(__dirname, './dist'),
     publicPath: '/',
   },
   devServer: {
